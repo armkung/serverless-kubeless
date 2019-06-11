@@ -81,7 +81,7 @@ class KubelessDeploy {
   deployFunction() {
     const runtime = this.serverless.service.provider.runtime;
     const populatedFunctions = [];
-    const kubelessConfig = new Config();
+    const kubelessConfig = new Config({ namespace: this.serverless.service.provider.namespace });
     return new BbPromise((resolve, reject) => {
       kubelessConfig.init().then(() => {
         _.each(this.serverless.service.functions, (description, name) => {
